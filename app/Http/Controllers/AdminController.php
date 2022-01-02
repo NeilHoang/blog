@@ -21,6 +21,8 @@ class AdminController extends Controller
         ]);
         $admin = Admin::where(['username' => $request->username, 'password' => $request->password])->count();
         if ($admin > 0) {
+            $adminData = Admin::where(['username' => $request->username, 'password' => $request->password])->get();
+            session(['adminData' => $adminData]);
             return redirect(route('admin.dashboard'));
         } else {
             return redirect(route('admin.form'))->with('msg', 'Invalid Username/Password!!');
@@ -30,5 +32,11 @@ class AdminController extends Controller
     function dashboard()
     {
         return view('admin.dashboard');
+    }
+
+    function logout()
+    {
+        session()->forget(['adminData']);
+        return redirect(route('admin.form'));
     }
 }

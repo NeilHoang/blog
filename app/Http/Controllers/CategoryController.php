@@ -87,7 +87,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $categories = Category::findOrFail($id);
-        $destination = 'upload/imageCate/' . $categories->image¬;
+        $destination = 'upload/imageCate/' . $categories->image;
         if (File::exists($destination)) {
             File::delete($destination);
         }

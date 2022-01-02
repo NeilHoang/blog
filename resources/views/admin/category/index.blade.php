@@ -8,6 +8,10 @@
             <a href="{{route('category.create')}}" class=" btn btn-sm btn-dark " style="float:right">Add Data</a>
         </div>
         <div class="card-body">
+            @if(session()->has('msg'))
+                <div class="text-success">
+                    {{ session()->get('msg') }}
+                    @endif
             <table id="datatablesSimple">
                 <thead>
                 <tr style="text-align: center;vertical-align: middle">
